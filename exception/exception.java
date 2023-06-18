@@ -32,6 +32,7 @@ class Push extends Exception_Stack{
             arr[top] = a1;
             System.out.println("Pushed item : " + arr[top]);
         }
+        scanner.close();
     }
 }
 
