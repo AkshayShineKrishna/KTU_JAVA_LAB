@@ -21,22 +21,22 @@ class Bank {
 
         // Getting customer name
         System.out.print("Enter customer name: ");
-        account.customerName = scanner.nextLine();
+        account.customerName = scanner.next();
+        account.customerName += scanner.nextLine();
 
         // Getting account number
         System.out.print("Enter account number: ");
         account.accountNumber = scanner.nextInt();
 
-        // Clearing the scanner buffer
-        scanner.nextLine();
-
         // Getting bank name
         System.out.print("Enter bank name: ");
-        account.bankName = scanner.nextLine();
+        account.bankName = scanner.next();
+        account.bankName += scanner.nextLine();
 
         // Getting account type
         System.out.print("Enter account type: ");
-        account.accountType = scanner.nextLine();
+        account.accountType = scanner.next();
+        account.accountType += scanner.nextLine();
 
         scanner.close();
 
