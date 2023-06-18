@@ -1,4 +1,3 @@
-package palindrome;
 import java.util.Scanner;
 
 class Palindrome {

@@ -1,4 +1,4 @@
-package distance;
+
 class Distance {
     double inch, foot;
     

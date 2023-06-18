@@ -1,4 +1,3 @@
-package thread;
 import java.util.Random;
 class Even extends Thread{
     int x;

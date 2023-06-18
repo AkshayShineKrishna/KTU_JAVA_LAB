@@ -1,4 +1,3 @@
-package exception;
 import java.util.Scanner;
 
 class MyException1 extends Exception {

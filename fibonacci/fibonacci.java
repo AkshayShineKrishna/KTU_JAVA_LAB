@@ -1,4 +1,3 @@
-package fibonacci;
 class Fibonacci {
     int num;
 

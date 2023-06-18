@@ -1,4 +1,4 @@
-package employee;
+
 import java.util.Scanner;
 
 class EmployeeDetails {
