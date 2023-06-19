@@ -22,7 +22,6 @@ class MyException2 extends Exception {
 
 class Push extends Exception_Stack{
     void pushVal (int top) throws MyException1{
-        Scanner scanner = new Scanner(System.in);
         if(top > 4){
             throw new MyException1(top);
         }
@@ -32,7 +31,6 @@ class Push extends Exception_Stack{
             arr[top] = a1;
             System.out.println("Pushed item : " + arr[top]);
         }
-        scanner.close();
     }
 }
 
@@ -48,6 +46,7 @@ class Pop extends Exception_Stack{
 }
 
 class Exception_Stack {
+    static Scanner scanner = new Scanner(System.in);
     static int[] arr = new int[5];
     public static void main(String[] args) {
         int top;
@@ -68,5 +67,6 @@ class Exception_Stack {
                 System.out.println("Catch : " + e);
             }
         }
+        scanner.close();
     }
 }
