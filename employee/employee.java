@@ -31,13 +31,14 @@ class Main {
         // Getting employee details from user
         System.out.print("Enter Employee Number: ");
         int employeeNumber = scanner.nextInt();
-        scanner.nextLine(); // Clearing the scanner buffer
         
         System.out.print("Enter Employee Name: ");
-        String employeeName = scanner.nextLine();
+        String employeeName = scanner.next();
+        employeeName += scanner.nextLine();
         
         System.out.print("Enter Employee Job: ");
-        String employeeJob = scanner.nextLine();
+        String employeeJob = scanner.next();
+        employeeJob += scanner.nextLine();
         
         System.out.print("Enter Salary: ");
         double salary = scanner.nextDouble();
