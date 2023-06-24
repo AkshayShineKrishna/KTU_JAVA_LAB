@@ -1,6 +1,5 @@
 SQL> create table emp06it(employeeid varchar(5),ename varchar(10),salary number(6),job varchar(15));
 
-
 Table created.
 
 SQL> desc emp06it;
