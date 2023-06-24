@@ -1,0 +1,129 @@
+SQL> create table student06it
+  2  (
+  3  rollno number(4) primary key,
+  4  name varchar2(20),
+  5  mark1 number(6),
+  6  mark2 number(6),
+  7  mark3 number(6)
+  8 );
+
+Table created.
+
+SQL> insert into student06it values (&rollno,'&name',&mark1,&mark2,&mark3);
+Enter value for rollno: 1
+Enter value for name: akhil
+Enter value for mark1: 45
+Enter value for mark2: 35
+Enter value for mark3: 50
+old   1: insert into student06it values (&rollno,'&name',&mark1,&mark2,&mark3)
+new   1: insert into student06it values (1,'akhil',45,35,50)
+
+1 row created.
+
+SQL> /
+Enter value for rollno: 2
+Enter value for name: albin
+Enter value for mark1: 25
+Enter value for mark2: 25
+Enter value for mark3: 25
+old   1: insert into student06it values (&rollno,'&name',&mark1,&mark2,&mark3)
+new   1: insert into student06it values (2,'albin',25,25,25)
+
+1 row created.
+
+SQL> /
+Enter value for rollno: 3
+Enter value for name: jochu
+Enter value for mark1: 5
+Enter value for mark2: 10
+Enter value for mark3: 15
+old   1: insert into student06it values (&rollno,'&name',&mark1,&mark2,&mark3)
+new   1: insert into student06it values (3,'jochu',5,10,15)
+
+1 row created.
+
+SQL> desc student06it;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLLNO                                    NOT NULL NUMBER(4)
+ NAME                                               VARCHAR2(20)
+ MARK1                                              NUMBER(6)
+ MARK2                                              NUMBER(6)
+ MARK3                                              NUMBER(6)
+
+SQL> select * from student06it;
+
+    ROLLNO NAME                      MARK1      MARK2      MARK3
+---------- -------------------- ---------- ---------- ----------
+         1 akhil                        45         35         50
+         2 albin                        25         25         25
+         3 jochu                         5         10         15
+
+SQL> create or replace procedure studpr06it
+  2  (rno in number,grade out char,name out varchar)as
+  3  m1 number(6);
+  4  m2 number(6);
+  5  m3 number(6);
+  6  t number(7);
+  7  begin
+  8  select name,mark1,mark2,mark3 into name,m1,m2,m3 from student06it where rollno=rno;
+  9  t:=m1+m2+m3;
+ 10  if(t>100) then
+ 11  Grade:='A';
+ 12  elsif(t between 70 and 100) then
+ 13  Grade:='B';
+ 14  end if;
+ 15  if(t between 50 and 70) then
+ 16  Grade:='C';
+ 17  elsif(t<50) then
+ 18  Grade:='FAIL';
+ 19  end if;
+ 20  end;
+SQL> /
+
+
+Procedure created.
+
+SQL> declare
+  2  name varchar(15);
+  3  grade char(6);
+  4  rno number(6);
+  5  begin
+  6  rno:=&rollno;
+  7  studpr06it(rno,grade,name);
+  8  dbms_output.put_line(name || ' got ' || grade || ' grade');
+  9  exception
+ 10  when no_data_found then
+ 11  dbms_output.put_line('Student not found');
+ 12  end;
+SQL> /
+Enter value for rollno: 1
+old   6: rno:=&rollno;
+new   6: rno:=1;
+akhil got A      grade
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for rollno: 2
+old   6: rno:=&rollno;
+new   6: rno:=2;
+albin got B      grade
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for rollno: 3
+old   6: rno:=&rollno;
+new   6: rno:=3;
+jochu got FAIL   grade
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for rollno: 5
+old   6: rno:=&rollno;
+new   6: rno:=5;
+Student not found
+
+PL/SQL procedure successfully completed.

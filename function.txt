@@ -1,0 +1,80 @@
+SQL> create table emp06it(employeeid varchar(5),ename varchar(10),salary number(6),job varchar(15));
+
+
+Table created.
+
+SQL> desc emp06it;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEEID                                         VARCHAR2(5)
+ ENAME                                              VARCHAR2(10)
+ SALARY                                             NUMBER(6)
+ JOB                                                VARCHAR2(15)
+
+SQL> insert into emp06it values('&employeeid','&ename',&salary,'&job');
+Enter value for employeeid: e101
+Enter value for ename: harry
+Enter value for salary: 5000
+Enter value for job: technician
+old   1: insert into emp06it values('&employeeid','&ename',&salary,'&job')
+new   1: insert into emp06it values('e101','harry',5000,'technician')
+
+1 row created.
+
+SQL> /
+Enter value for employeeid: e102
+Enter value for ename: niall
+Enter value for salary: 8000
+Enter value for job: manarger
+old   1: insert into emp06it values('&employeeid','&ename',&salary,'&job')
+new   1: insert into emp06it values('e102','niall',8000,'manarger')
+
+1 row created.
+
+SQL> select * from emp06it;
+
+EMPLO ENAME          SALARY JOB
+----- ---------- ---------- ---------------
+e101  harry            5000 technician
+e102  niall            8000 manarger
+
+SQL> CREATE OR REPLACE FUNCTION sal(id IN VARCHAR2) RETURN VARCHAR2
+  2  AS
+  3  sal_value NUMBER(5);
+  4  name_value VARCHAR2(30);
+  5  BEGIN
+  6  SELECT salary, ename INTO sal_value, name_value FROM emp06it WHERE employeeid = id;
+  7  RETURN 'ename :' || name_value || ', salary : ' || sal_value;
+  8 END;
+  9 /
+
+Function created.
+
+SQL>  DECLARE
+  2  eid varchar(5);
+  3  salary_detail varchar(30);
+  4  begin
+  5  eid:='&eid';
+  6  salary_detail:=sal(eid);
+  7  dbms_output.put_line(salary_detail);
+  8  exception
+  9  when no_data_found then
+ 10  dbms_output.put_line('Employee not found');
+ 11 END;
+ 12 /
+
+Enter value for eid: e101
+old   5: eid:='&eid';
+new   5: eid:='e101';
+ename :harry , salary : 5000
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for eid: 5
+old   5: eid:='&eid';
+new   5: eid:='5';
+Employee not found
+
+PL/SQL procedure successfully completed.
+
