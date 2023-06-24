@@ -37,10 +37,10 @@ EMPLO ENAME          SALARY JOB
 e101  harry            5000 technician
 e102  niall            8000 manarger
 
-SQL> CREATE OR REPLACE FUNCTION sal(id IN VARCHAR2) RETURN VARCHAR2
+SQL> CREATE OR REPLACE FUNCTION sal(id IN VARCHAR) RETURN VARCHAR2
   2  AS
   3  sal_value NUMBER(5);
-  4  name_value VARCHAR2(30);
+  4  name_value VARCHAR(30);
   5  BEGIN
   6  SELECT salary, ename INTO sal_value, name_value FROM emp06it WHERE employeeid = id;
   7  RETURN 'ename :' || name_value || ', salary : ' || sal_value;
