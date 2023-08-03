@@ -59,10 +59,10 @@ public class Calculator extends Frame implements ActionListener {
         button7.setBounds(20, 220, 50, 50);
         button8.setBounds(80, 220, 50, 50);
         button9.setBounds(140, 220, 50, 50);
-        button0.setBounds(20, 280, 50, 50); // Aligned to the left
+        button0.setBounds(20, 280, 50, 50);
         buttonPlus.setBounds(200, 100, 50, 50);
-        buttonEqual.setBounds(140, 280, 110, 50); // Same size as others
-        buttonClear.setBounds(80, 280, 50, 50); // Aligned below the "8" button
+        buttonEqual.setBounds(140, 280, 110, 50);
+        buttonClear.setBounds(80, 280, 50, 50);
         buttonDivide.setBounds(200, 160, 50, 50);
         buttonMultiply.setBounds(200, 220, 50, 50);
         buttonSubtract.setBounds(200, 280, 50, 50);
