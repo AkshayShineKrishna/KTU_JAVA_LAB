@@ -59,13 +59,13 @@ public class Calculator extends Frame implements ActionListener {
         button7.setBounds(20, 220, 50, 50);
         button8.setBounds(80, 220, 50, 50);
         button9.setBounds(140, 220, 50, 50);
-        button0.setBounds(20, 280, 50, 50);
+        button0.setBounds(20, 280, 50, 50); 
         buttonPlus.setBounds(200, 100, 50, 50);
-        buttonEqual.setBounds(140, 280, 110, 50);
-        buttonClear.setBounds(80, 280, 50, 50);
+        buttonEqual.setBounds(200, 280, 50, 50); 
+        buttonClear.setBounds(80, 280, 50, 50); 
         buttonDivide.setBounds(200, 160, 50, 50);
         buttonMultiply.setBounds(200, 220, 50, 50);
-        buttonSubtract.setBounds(200, 280, 50, 50);
+        buttonSubtract.setBounds(140, 280, 50, 50);
 
         button0.addActionListener(this);
         button1.addActionListener(this);
@@ -109,10 +109,12 @@ public class Calculator extends Frame implements ActionListener {
             displayLabel.setText("");
         } else if (command.equals("=")) {
             currentValue = Double.parseDouble(currentDisplayValue);
-            double result = calculateResult(previousValue, operator, currentValue);
+            String result = calculateResult(previousValue, operator, currentValue);
             resultLabel.setText(" ");
             displayLabel.setText(String.valueOf(result));
-            previousValue = result;
+            try{previousValue = Double.parseDouble(result);}catch(Exception e){
+                previousValue = 0;
+            }
         } else if (command.equals("C")) {
             displayLabel.setText("");
             resultLabel.setText("");
@@ -122,28 +124,30 @@ public class Calculator extends Frame implements ActionListener {
         }
     }
 
-    private double calculateResult(double num1, String operator, double num2) {
-        double result = 0;
+    private String calculateResult(double num1, String operator, double num2) {
+        String result = "";
+        System.out.println(num2);
         switch (operator) {
             case "+":
-                result = num1 + num2;
+                result = String.valueOf(num1 + num2);
                 break;
             case "-":
-                result = num1 - num2;
+                result = String.valueOf(num1 - num2);
                 break;
             case "*":
-                result = num1 * num2;
+                result = String.valueOf(num1 * num2);
                 break;
             case "/":
                 if (num2 != 0) {
-                    result = num1 / num2;
+                    result = String.valueOf(num1 / num2);
                 } else {
-                    resultLabel.setText("Cannot divide by zero");
+                    result = "Cannot divide by zero";
                 }
                 break;
         }
         return result;
     }
+    
 
     public static void main(String args[]) {
         Calculator c = new Calculator();
